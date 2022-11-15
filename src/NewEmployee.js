@@ -1,9 +1,31 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { useState } from "react"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+
 export const Register=()=>
 {
-    
+    const[person,setPerson]=useState({
+        "empId":0,
+        "empName":"",
+        "empUsername":"",
+        "empPassword":"",
+        "empDesignation":"",
+        "empExp":0,
+        "empSalary":0
+    })
+
+    const track=(manoj)=>{
+        const{name,value}=manoj.target
+        setPerson(
+            (old)=>{
+                return{
+                    ...old,
+                    [name]:value
+                }
+        }
+        )
+    }
     const Regis=()=>{
-        alert("Welcome to Zealous Tech Corp")
+        alert("Registered"+JSON.stringify(person))
     }
     const cancel=()=>
     {
@@ -19,6 +41,8 @@ export const Register=()=>
                         <label>EmployeeId</label>   
                         <input type="text"
                         name="empId"
+                        onChange={track}
+                        value={person.empId}
                         placeholder="Employee Id"
                         className="form-control"
                         />
@@ -27,6 +51,8 @@ export const Register=()=>
                         <label>EmployeeName</label>   
                         <input type="text"
                         name="empName"
+                        onChange={track}
+                        value={person.empName}
                         placeholder="EmployeeName"
                         className="form-control"
                         />
@@ -35,6 +61,8 @@ export const Register=()=>
                         <label>EmployeeUsername</label>   
                         <input type="text"
                         name="empUsername"
+                        onChange={track}
+                        value={person.empUsername}
                         placeholder="Employee Username"
                         className="form-control"
                         />
@@ -43,13 +71,18 @@ export const Register=()=>
                         <label>EmployeePassword</label>   
                         <input type="text"
                         name="empPassword"
+                        onChange={track}
+                        value={person.empPassword}
                         placeholder="EmployeePassword"
                         className="form-control"
                         />
                     </div>
                     <div className="col-md-6 col-sm-12">
                                 <label>Employeee Designation</label>
-                                <select name="empDesignation" className="form-select me-5">
+                                <select name="empDesignation"
+                                onChange={track}
+                                value={person.empDesignation}
+                                 className="form-select me-5">
                                     <option>Select Designation</option>
                                     <option>Java Full Stack Developer</option>
                                     <option>Python Full Stack Developer</option>
@@ -62,6 +95,8 @@ export const Register=()=>
                         <label>EmployeeExp</label>   
                         <input type="text"
                         name="empExp"
+                        onChange={track}
+                        value={person.empExp}
                         placeholder="EmployeeExp"
                         className="form-control"
                         />
@@ -70,13 +105,15 @@ export const Register=()=>
                         <label>EmployeeSalary</label>   
                         <input type="text"
                         name="empSalary"
+                        onChange={track}
+                        value={person.empSalary}
                         placeholder="EmployeeSalary"
                         className="form-control"
                         />
                     </div>
                     <div className="row justify-content-around mt-4">
                         <button className="btn btn-outline-success col-3 ms-3" onClick={Regis}>Register</button>
-                        <button className="btn btn-outline-success col-3 me-3" onClick={cancel}>Cancel</button>
+                        <button className="btn btn-outline-success col-3 me-3" type="reset" value="Reset" onClick={cancel}>Reset</button>
                     </div>
                 </div>
             </div>
