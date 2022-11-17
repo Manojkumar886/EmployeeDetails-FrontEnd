@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/bootstrap-icons/font/bootstrap-icons.css"
 import { list } from "./EmployeeValues"
 import { Register } from "./NewEmployee"
+import { Read } from "./Read"
 
 export const Home=()=>
 {
     const[tmparray,setTmparray]=useState([])
     const[createView,setCreateView]=useState(false)
+    const[readView,setReadView]=useState(false)
+    const[pos,setPos]=useState(0)
 
     const result=()=>
     {
@@ -33,6 +37,20 @@ export const Home=()=>
             </button>
             </>
             :
+            (readView)?
+            <>
+            <Read who={pos}/>
+            <button className="btn btn-outline-secondary" onClick={
+                ()=>
+                {
+                    setReadView(false)
+                }
+            }>
+                <i className="bi bi-skip-backward-btn-fill"></i>
+                Back
+            </button>
+            </>
+            :
             <>
             <button className="btn btn-outline-success mb-3" onClick={
                 ()=>
@@ -54,6 +72,7 @@ export const Home=()=>
                                         <th>Employee Designation</th>
                                         <th>Employee Experience</th>
                                         <th>Employee Salary</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,13 +80,24 @@ export const Home=()=>
                                         tmparray.map((ele,ind)=>
                                         (
                                             <tr>
-                                            <td>{ele.empId}</td>
+                                            <td>
+                                                {ele.empId}
+                                            </td>
                                             <td>{ele.empName}</td>
                                             <td>{ele.empUsername}</td>
                                             <td>{ele.empPassword}</td>
                                             <td>{ele.empDesignation}</td>
                                             <td>{ele.empExp}</td>
                                             <td>{ele.empSalary}</td>     
+                                            <td>
+                                            <button className="btn btn-outline-info" onClick={()=>
+                                                {
+                                                    setReadView(true)
+                                                    setPos(ind)
+                                                }}>
+                                                    <i className="bi bi-book-half">READ</i>
+                                            </button>
+                                            </td>
                                             </tr>
 
                                         ))
