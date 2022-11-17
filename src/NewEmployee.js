@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import { create } from "./EmployeeValues"
 
 export const Register=()=>
 {
@@ -25,7 +26,9 @@ export const Register=()=>
         )
     }
     const Regis=()=>{
-        alert("Registered"+JSON.stringify(person))
+        alert("Welcome to zealous tech corp,go to back")
+        create(person)
+        // alert("Registered"+JSON.stringify(person))
     }
     const cancel=()=>
     {
@@ -113,7 +116,7 @@ export const Register=()=>
                     </div>
                     <div className="row justify-content-around mt-4">
                         <button className="btn btn-outline-success col-3 ms-3" onClick={Regis}>Register</button>
-                        <button className="btn btn-outline-success col-3 me-3" type="reset" value="Reset" onClick={cancel}>Reset</button>
+                        <button className="btn btn-outline-success col-3 me-3" type="reset " value="Reset" onClick={cancel}>Reset</button>
                     </div>
                 </div>
             </div>

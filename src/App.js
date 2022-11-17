@@ -1,10 +1,12 @@
+import { Home } from "./Home";
 import { Register } from "./NewEmployee";
 
 
 function App() {
   return(
     <>
-    <Register/>
+    <Home/>
+    {/* <Register/> */}
     </>
   );
 }
