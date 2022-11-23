@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css"
-import { list } from "./EmployeeValues"
+import { Fetchexact, list, remove } from "./EmployeeValues"
 import { Register } from "./NewEmployee"
 import { Read } from "./Read"
+import { Update } from "./Update"
 
 export const Home=()=>
 {
     const[tmparray,setTmparray]=useState([])
     const[createView,setCreateView]=useState(false)
     const[readView,setReadView]=useState(false)
+    const[updateview,setUpdateView]=useState(false)
     const[pos,setPos]=useState(0)
+    const[obj,setObj]=useState({})
 
     const result=()=>
     {
@@ -34,6 +37,20 @@ export const Home=()=>
                 }
             }>
                 Back
+            </button>
+            </>
+            :
+            (updateview)?
+            <>
+            <Update who={pos} mention={obj}/>
+            <button className="btn btn-outline-secondary" onClick={
+                ()=>
+                {
+
+                    setUpdateView(false)
+                }
+            }>
+              <i className="bi bi-skip-backward-btn-fill"></i>  Back
             </button>
             </>
             :
@@ -96,6 +113,22 @@ export const Home=()=>
                                                     setPos(ind)
                                                 }}>
                                                     <i className="bi bi-book-half">READ</i>
+                                            </button>
+                                            <button className=" btn btn-outline-warning" onClick={()=>
+                                            {
+                                                setUpdateView(true)
+                                                setPos(ind)
+                                                const temp=Fetchexact(ele.empName)
+                                                setObj(temp)
+                                            }
+                                            }>
+                                                Edit<i className="bi bi-pencil-fill"></i>
+                                            </button>
+                                            <button className="btn btn-outline-danger" onClick={()=>
+                                            {
+                                                setTmparray(remove(ind))
+                                            }}>
+                                                Delete
                                             </button>
                                             </td>
                                             </tr>

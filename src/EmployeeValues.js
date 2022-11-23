@@ -50,3 +50,28 @@ export const read=(index)=>
 {
     return myemployeedetails[index];
 }
+
+
+export const Fetchexact=(name)=>
+{
+    const tmp=myemployeedetails.filter((element)=>
+    {
+        return element.empName===name
+    })
+    return tmp[0];
+}
+
+export const alter=(data,place)=>
+{
+    myemployeedetails[place]=data
+}
+
+
+export const remove=(index)=>
+{
+    myemployeedetails=myemployeedetails.filter((d,i)=>
+    {
+        return i!==index;
+    })
+    return myemployeedetails;
+}
